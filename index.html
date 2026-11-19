@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>思い出ビンゴ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ビンゴ画面 -->
+  <div id="bingoPage">
+    <h1>思い出ビンゴ</h1>
+    <p>お題に合わせて写真を撮ろう</p>
+
+    <div id="bingoCard" class="bingo-card"></div>
+
+    <p id="bingoStatus">達成したお題：0 / 9</p>
+    <button class="link-btn" id="openAlbum">アルバムを開く</button>
+
+       <button id="resetBingo" class="reset-btn"> 実験データをリセット</button>
+  </div>
+
+  <!-- お題の確認画面 -->
+  <div id="promptPage" style="display:none;">
+    <h2>今回のお題</h2>
+    <p id="promptText"></p>
+
+    <button id="startShooting">このお題で撮影する</button>
+    <button id="backBingo">ビンゴに戻る</button>
+  </div>
+
+  <!-- カメラ画面 -->
+  <div id="cameraPage" style="display:none;">
+    <h1>思い出ビンゴ</h1>
+
+    <p id="currentPrompt"></p>
+
+    <div class="camera-container">
+      <video id="video" autoplay playsinline></video>
+      <canvas id="canvas"></canvas>
+
+      <button id="switchCameraBtn">カメラ切替</button>
+      <button id="captureBtn">撮影して保存</button>
+    </div>
+
+    <button class="link-btn" id="backToBingo">ビンゴに戻る</button>
+    <button class="link-btn" id="openAlbumFromCamera">アルバムを開く</button>
+  </div>
+
+  
+
+  <!-- アルバム画面 -->
+  <div id="albumPage" style="display:none;">
+    <h2>撮影した写真</h2>
+
+    <div class="search-box">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="メモを検索">
+    </div>
+
+    <div class="gallery" id="gallery"></div>
+
+    <button id="backBingoFromAlbum">ビンゴに戻る</button>
+  </div>
+
+  <script src="common.js"></script>
+  <script src="bingo.js"></script>
+  <script src="camera.js"></script>
+  <script src="album.js"></script>
+
+</body>
+</html>

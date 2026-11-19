@@ -1,0 +1,419 @@
+/* ===== 全体 ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #e0e3fc;
+  color: #333;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h1 {
+  color: #38358f;
+  margin-bottom: 12px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* ===== ボタン共通 ===== */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #4945a8;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ===== ビンゴ画面 ===== */
+#bingoPage {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#bingoPage > p {
+  margin: 12px 0 20px;
+}
+
+/* ビンゴカード */
+.bingo-card {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+/* ビンゴの各マス */
+.bingo-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  padding: 8px;
+  border: 2px solid #c3c0f0;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #4945a8;
+  font-size: clamp(12px, 3.5vw, 15px);
+  font-weight: bold;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+/* マスにカーソルを合わせたとき */
+.bingo-cell:hover {
+  background: #f0efff;
+  opacity: 1;
+}
+
+/* 達成済みのマス */
+.bingo-cell.completed {
+  background: #b8b5f0;
+  border-color: #7772d6;
+  color: #ffffff;
+}
+
+/* 達成状況 */
+#bingoStatus {
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #38358f;
+}
+
+/* ビンゴ画面のアルバムボタン */
+#openAlbum {
+  margin-top: 8px;
+}
+
+/* ===== お題確認画面 ===== */
+#promptPage {
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 16px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(50, 45, 120, 0.1);
+}
+
+#promptText {
+  margin: 24px 0;
+  font-size: 22px;
+  font-weight: bold;
+  color: #4945a8;
+}
+
+#startShooting,
+#backBingo {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* ===== カメラ画面 ===== */
+#cameraPage {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#currentPrompt {
+  padding: 12px;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #4945a8;
+  font-weight: bold;
+}
+
+.camera-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+video {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  background: black;
+}
+
+canvas {
+  display: none;
+}
+
+#switchCameraBtn,
+#captureBtn {
+  width: 100%;
+  max-width: 400px;
+}
+
+#captureBtn {
+  background: #38358f;
+  font-weight: bold;
+}
+
+.link-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #07058d;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+/* ===== アルバム画面 ===== */
+#albumPage {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.photo-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  box-shadow: 0 3px 8px rgba(50, 45, 120, 0.1);
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.photo-info {
+  padding: 10px;
+  overflow-wrap: anywhere;
+}
+
+.memo {
+  margin-bottom: 8px;
+}
+
+.tags {
+  font-size: 12px;
+  color: #777;
+}
+
+.date {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #777;
+}
+
+.delete-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  background: #ff4d4d;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== 思い出ゲージ（必要になったら使用） ===== */
+.memory-gauge {
+  width: 100%;
+  max-width: 350px;
+  height: 25px;
+  margin: 20px auto 10px;
+  border: 2px solid #555;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+#memoryBar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(to right, #76a8f1, #4876eb);
+  transition: width 0.5s ease;
+}
+
+#memoryText {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ===== スマホ向け調整 ===== */
+@media (max-width: 400px) {
+  body {
+    padding: 14px;
+  }
+
+  .bingo-card {
+    gap: 6px;
+  }
+
+  .bingo-cell {
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  #promptPage {
+    padding: 18px;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+/* ===== ビンゴ形式のアルバム ===== */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.bingo-album-cell {
+  min-width: 0;
+  padding: 8px;
+  border: 2px solid #c3c0f0;
+  border-radius: 12px;
+  background: #ffffff;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.bingo-album-title {
+  min-height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #4945a8;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.bingo-album-cell img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.bingo-album-cell.completed {
+  border-color: #7772d6;
+}
+
+.bingo-album-cell.empty {
+  background: #f4f3fc;
+  border-style: dashed;
+}
+
+.bingo-album-placeholder {
+  min-height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  color: #999;
+  font-size: 12px;
+}
+
+.bingo-album-memo {
+  margin-top: 8px;
+  font-size: 13px;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.bingo-album-cell .date {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #777;
+}
+
+.bingo-album-cell .delete-btn {
+  margin-top: 8px;
+  font-size: 12px;
+  padding: 6px;
+}
+
+@media (max-width: 400px) {
+  .gallery {
+    gap: 6px;
+  }
+
+  .bingo-album-cell {
+    padding: 5px;
+  }
+
+  .bingo-album-title {
+    font-size: 11px;
+  }
+}
+
+/* 実験データのリセットボタン */
+.reset-btn {
+  display: block;
+  margin: 16px auto;
+  padding: 8px 14px;
+  background: #777;
+  color: white;
+  font-size: 13px;
+}
